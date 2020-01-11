@@ -27,14 +27,14 @@ RUN rm -rf \
         usr/share/doc \
         usr/share/man \
         usr/share/lintian \
-        usr/lib/x86_64-linux-gnu/perl/debian-config-data-* \
-        usr/lib/x86_64-linux-gnu/perl/cross-config-* \
- && ln -sf perl5.26-x86_64-linux-gnu usr/bin/perl \
- && ln -sf perl5.26-x86_64-linux-gnu usr/bin/perl5.26.1 \
- && ln -sf cpan5.26-x86_64-linux-gnu usr/bin/cpan \
+        usr/lib/*-linux-gnu*/perl/debian-config-data-* \
+        usr/lib/*-linux-gnu*/perl/cross-config-* \
+ && ln -sf /`ls -1 usr/bin/perl5.26-*-linux-gnu*` usr/bin/perl \
+ && ln -sf /`ls -1 usr/bin/perl5.26-*-linux-gnu*` usr/bin/perl5.26.1 \
+ && ln -sf /`ls -1 usr/bin/cpan5.26-*-linux-gnu*` usr/bin/cpan \
  && fdupes -rnq1 \
-        usr/lib/x86_64-linux-gnu/perl \
-        usr/lib/x86_64-linux-gnu/perl-base \
+        usr/lib/*-linux-gnu*/perl \
+        usr/lib/*-linux-gnu*/perl-base \
         usr/share/perl \
     | xargs -I % sh -c "ln -sf /%"
 
